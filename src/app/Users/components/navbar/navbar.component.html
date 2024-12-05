@@ -1,0 +1,39 @@
+<nav class="bg-white border-gray-200 dark:bg-gray-900">
+  <div class="max-w-screen-xl flex flex-wrap items-center justify-between mx-auto p-4">
+    <a
+      href="/home"
+      class="flex items-center space-x-3 rtl:space-x-reverse"
+      [ngClass]="{'text-blue-700': currentRoute === '/home'}"
+      (click)="setCurrentRoute('/home')">
+      <span class="self-center text-2xl font-semibold whitespace-nowrap dark:text-white">Catedra 2</span>
+    </a>
+    <div class="hidden w-full md:block md:w-auto" id="navbar-default">
+      <ul class="font-medium flex flex-col p-4 md:p-0 mt-4 border border-gray-100 rounded-lg bg-gray-50 md:flex-row md:space-x-8 rtl:space-x-reverse md:mt-0 md:border-0 md:bg-white dark:bg-gray-800 md:dark:bg-gray-900 dark:border-gray-700">
+        <li>
+          <a
+            href="/verUsuarios"
+            [ngClass]="{
+              'text-blue-700 bg-gray-100': currentRoute === '/verUsuarios',
+              'text-gray-900 hover:bg-gray-100 md:hover:text-blue-700': currentRoute !== '/verUsuarios'
+            }"
+            (click)="setCurrentRoute('/verUsuarios')"
+            class="block py-2 px-3 rounded md:p-0 dark:text-white">
+            Ver Usuarios
+          </a>
+        </li>
+        <li>
+          <a
+            href="/crearUsuario"
+            [ngClass]="{
+              'text-blue-700 bg-gray-100': currentRoute === '/crearUsuario',
+              'text-gray-900 hover:bg-gray-100 md:hover:text-blue-700': currentRoute !== '/crearUsuario'
+            }"
+            (click)="setCurrentRoute('/crearUsuario')"
+            class="block py-2 px-3 rounded md:p-0 dark:text-white">
+            Crear Usuario
+          </a>
+        </li>
+      </ul>
+    </div>
+  </div>
+</nav>
