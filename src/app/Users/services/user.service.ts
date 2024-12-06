@@ -1,4 +1,4 @@
-import { HttpClient, HttpErrorResponse, HttpParams } from '@angular/common/http';
+import { HttpClient, HttpErrorResponse, HttpClientModule } from '@angular/common/http';
 import { Injectable, inject } from '@angular/core';
 import { firstValueFrom, Observable } from 'rxjs';
 import { ResponseAPIGetAll, User } from '../interfaces/ResponseApi_GetAllUser';
@@ -10,7 +10,7 @@ export class UserService {
     private baseUrl: string = 'http://localhost:5073/api/User'; // URL base de la API
 
     private http = inject(HttpClient);
-
+    public errors : string[] = [];
   
   
     async GetAllUsers() : Promise<ResponseAPIGetAll>
@@ -36,8 +36,14 @@ export class UserService {
 
             return Promise.resolve(response);
         }catch(error){
+            console.error('Error en createEbook', error);
+
+            if (error instanceof HttpErrorResponse) {
+                const errorMessage =
+                typeof error.error === 'string' ? error.error : error.message;
+                this.errors.push(errorMessage);
+            }
             return Promise.reject(error);
         }
     }
-
-  }
+}
